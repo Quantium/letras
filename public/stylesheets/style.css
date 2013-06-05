@@ -6,3 +6,24 @@ body {
 a {
   color: #00B7FF;
 }
+#chat .chat_message .username {
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+	padding-right: 3px;
+	border-right-width: medium;
+	border-right-style: solid;
+	border-right-color: #000;
+	margin-right: 3px;
+}
+.chat_message {
+	font-size: 14px;
+	color: #333333;
+	border: thin solid #CCC;
+}
+.chat_message:nth-child(odd){
+	background-color: #DDDDDD;
+}
+.chat_message:nth-child(even){
+	background-color: #FFFFFF;
+}

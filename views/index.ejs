@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
 	<title><%= title %></title>
-	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel='stylesheet' href='stylesheets/style.css' />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	  var socket = io.connect('http://isotopo.net:3000');
@@ -10,10 +11,25 @@
 	    console.log(data);
 	    socket.emit('my other event', { my: 'data' });
 	  });
+	  socket.on('message', function (data) {
+	    $('#chat').append('<div class="chat_message"><span class="username" id="'+data.user+'">'+data.user+'</span>'+data.msg+'</div>');
+	  });
+	$(document).ready(function()
+	{
+		$(".send").click(function(e) {
+			console.log('#chat click :: ', $('#message').val());
+			var message = $('#message').val();
+            socket.emit('message',{msg: message,user:"Quantium"})
+        });
+	});
+	
 	</script>
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<body>
+
+<div id="chat">
+</div>
+<div id="chat_response"><input name="message" id="message" type="text" /> <span class="send"><a href="#">Send</a></span></div>
+
+</body>
 </html>

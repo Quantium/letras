@@ -43,5 +43,9 @@ io.sockets.on('connection', function (socket) {
 	socket.on('my other event', function (data) {
 		console.log(data);
 	});
+	socket.on('message',function (data) {
+		console.log(data);
+		socket.emit('message',data);
+	});
 });
 	
