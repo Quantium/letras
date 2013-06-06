@@ -29,7 +29,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 
 var server = http.createServer(app)
    ,io = require('socket.io').listen(server);
@@ -38,14 +37,23 @@ server.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
 
-io.sockets.on('connection', function (socket) {
-	socket.emit('news', { hello: 'world' });
-	socket.on('my other event', function (data) {
+io.sockets.on('connection', function (socket){
+	
+	console.log('A socket from ' + socket.handshake.address.address + ' connected!');
+	
+	
+	socket.on('login',function (data) {
 		console.log(data);
+		socket.emit('login',{r:'ok',token:'token',username:data.username});
+		socket.broadcast.emit('enter',{username: data.username});
 	});
-	socket.on('message',function (data) {
+	
+	socket.on('msg',function (data) {
 		console.log(data);
-		socket.emit('message',data);
+		//Se envía sólo al que envío el mensaje
+		//socket.emit('msg',data);
+		//Se envía a todos los sockets conectados
+		io.sockets.emit('msg',data);
 	});
-});
+});;
 	
