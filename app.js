@@ -55,5 +55,17 @@ io.sockets.on('connection', function (socket){
 		//Se envía a todos los sockets conectados
 		io.sockets.emit('msg',data);
 	});
-});;
+	
+	socket.on('dragstart',function (data) {
+		console.log(data);
+		//io.sockets.emit('dragstart',data);
+		socket.broadcast.emit('dragstart',data);
+	});
+	
+	socket.on('dragend',function (data) {
+		console.log(data);
+		//io.sockets.emit('dragend',data);
+		socket.broadcast.emit('dragend',data);
+	});
+});
 	
