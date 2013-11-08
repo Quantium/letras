@@ -1,5 +1,6 @@
 {
   "name": "letras",
+  "author": "Andrés González Aragón at @Quantium",
   "version": "0.0.2",
   "private": true,
   "scripts": {
@@ -7,13 +8,16 @@
   },
   "dependencies": {
     "express": "3.2.6",
+    "assert": "*",
     "ejs": "*",
     "socket.io": "0.9.x",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.3",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-cssmin": "*",
-    "grunt-contrib-clean": "*",
+    "grunt-nodemon": "*",
+    "grunt-concurrent": "*",
+    "grunt-simple-mocha": "*",
     "grunt-contrib-watch": "*"
   }
 }

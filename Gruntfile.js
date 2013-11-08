@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
-      files: ['Gruntfile.js', 'app.js', 'src/javascripts/**.js','routes/**.js'],
+      files: ['Gruntfile.js', 'app.js', 'src/javascripts/**.js','routes/**.js','tests/**.js','tests/**/**.js'],
       options: {
           node: true,
           laxcomma: true
@@ -28,14 +28,48 @@ module.exports = function(grunt) {
         }
       }
     },
-    clean: [
-      'nobody',
-      'noway'
-    ],
+
+    nodemon: {
+      dev: {
+        options: {
+          file: 'app.js',
+          args: ['development'],
+          nodeArgs: ['--debug'],
+          ignoredFiles: ['README.md', 'node_modules/**', 'public/**', 'tests/**','Gruntfile.js'],
+          watchedExtensions: ['js','ejs'],
+          watchedFolders: ['test', 'tasks'],
+          delayTime: 1,
+          legacyWatch: true,
+          env: {
+            PORT: '8181'
+          },
+          cwd: __dirname
+        }
+      }
+    },
+    simplemocha: {
+      all: {
+        src: ['tests/**.js','tests/**/**.js'],
+        options: {
+          timeout: 3000,
+          ignoreLeaks: false,
+          //reporter: 'nyan'
+          reporter: 'spec'
+        }
+      }
+    },
     watch: {
       dev: {
-        files: ['<%= jshint.files %>'],
-        tasks: ['less:dev','jshint','uglify','htmlmin:dev']
+        files: ['<%= jshint.files %>','src/stylesheets/**.css'],
+        tasks: ['jshint', 'uglify', 'cssmin', 'simplemocha']
+      }
+    },
+    concurrent: {
+      target: {
+        tasks: ['nodemon', 'watch'],
+        options: {
+          logConcurrentOutput: true
+        }
       }
     }
   });
@@ -43,12 +77,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-concurrent');
 
-  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
 
-  grunt.registerTask('publish', ['jshint','uglify','cssmin','clean']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin','simplemocha']);
+
+  grunt.registerTask('publish', ['jshint','uglify','cssmin']);
 
   grunt.event.on('watch', function(action, filepath, target) {
     grunt.log.writeln(target + ': ' + filepath + ' has ' + action);

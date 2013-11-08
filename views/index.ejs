@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title><%= title %></title>
-	<link rel='stylesheet' href='stylesheets/style.css' />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-  </head>
+<%- include head.ejs %>
 <body>
-<section id="login">
-    <input name="user" type="text" value="user" id="user">
-    <input name="email" type="text" value="email@" id="email">
-    <input name="loginbtn" type="submit" value="Log In" id="loginbtn">
-</section>
-<section id="user_interface">
-	<div id="welcome">Welcome <span class="username" id="username"></span></div>
-	<div id="chat_response"><input name="message" id="message" type="text" /> <span class="send"><a href="#">Send</a></span></div>
-	<div id="chat"></div>
-	<div id="game"></div>
-</section>
+<%- include login.ejs %>
+<%- include user_interface %>
   <script src='javascripts/index.js'></script>
 </body>
 </html>
