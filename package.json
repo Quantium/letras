@@ -1,20 +1,27 @@
 {
-  "name": "letras",
+  "name": "Letras-by-Quantium",
   "author": "Andrés González Aragón at @Quantium",
+  "description": "Simple game",
+  "main": "app.js",
   "version": "0.0.3",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "stop": "./node_modules/.bin/forever stop app.js",
+    "test": "./node_modules/.bin/grunt test"
+  },
+  "directories": {
+    "test": "test"
   },
   "dependencies": {
     "express": "3.2.6",
-    "assert": "*",
     "ejs": "*",
     "socket.io": "0.9.x",
     "bunyan": "~0.21.4",
     "forever": "~0.10.8",
     "restify": "~2.6.0",
-    "mongoose": "^3.8.9"
+    "mongoose": "^3.8.9",
+    "crypto": "0.0.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -22,7 +29,7 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-cssmin": "*",
     "grunt-concurrent": "*",
-    "grunt-contrib-watch": "*"
+    "grunt-contrib-watch": "*",
     "grunt-nodemon": "*",
     "grunt-simple-mocha": "*",
     "chai": "^1.9.1",
@@ -32,13 +39,11 @@
     "type": "git",
     "url": "git@github.com:Quantium/letras.git"
   },
-  "keywords":[
+  "keywords": [
     "letras",
     "chat",
     "game",
     "quantium",
     "scrabble"
-  ],
-  "author": "Andrés \"Quantium\" González Aragón",
-  "license": "MIT"
+  ]
 }

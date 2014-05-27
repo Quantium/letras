@@ -1,3 +1,6 @@
+var crypto = require('crypto'),
+    User =  require('../model/User')
+    ;
 module.exports = function iosocket(i){
 
 	i.sockets.on('connection', function (sckt){
@@ -7,8 +10,17 @@ module.exports = function iosocket(i){
 		
 		sckt.on('login',function (data) {
 			console.log(data);
-			sckt.emit('login',{r:'ok',token:'token',username:data.username});
-			sckt.broadcast.emit('enter',{username: data.username});
+                        var user = new User();
+                        user.personid = crypto.createHash('md5').update(data.username+data.email).digest('hex').substr(0,8); 
+                        user.nickname = data.username;
+                        user.email = data.email;
+                        user.save(function save_person(err,user){
+                          if(err)return console.warn(err);
+
+                          console.log('User Saved');
+			  sckt.emit('login',{r:'ok',token:'token',username:data.username});
+			  sckt.broadcast.emit('enter',{username: data.username});
+                        });
 		});
 		
 		sckt.on('msg',function (data) {
