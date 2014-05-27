@@ -53,8 +53,8 @@ module.exports = function(grunt) {
         options: {
           timeout: 3000,
           ignoreLeaks: false,
-          //reporter: 'nyan'
-          reporter: 'spec'
+          reporter: 'nyan'
+          //reporter: 'spec'
         }
       }
     },
@@ -83,9 +83,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
 
 
-  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin','simplemocha']);
+  grunt.registerTask('default', 'Grunt commands for this project', function(){
+    grunt.log.subhead('Instructions');
+    grunt.log.writeln('Call dev for regular time-to-time compilation');
+    grunt.log.writeln('Call publish to deployt in a production enviroment, this command changes the version');
+    grunt.log.writeln('Call test to run the mocha tests');
+    grunt.log.ok('End of instructions');
+  });
+  grunt.registerTask('dev', ['jshint', 'uglify', 'cssmin']);
+  grunt.registerTask('test', ['simplemocha']);
 
-  grunt.registerTask('publish', ['jshint','uglify','cssmin']);
+  grunt.registerTask('publish', ['jshint','uglify','cssmin','simplemocha']);
 
   grunt.event.on('watch', function(action, filepath, target) {
     grunt.log.writeln(target + ': ' + filepath + ' has ' + action);

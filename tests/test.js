@@ -1,5 +1,13 @@
-var assert = require("assert")
-	, http = require('http');
+/*global describe:true, before:true, after: true, it:true */
+
+'use strict';
+
+var util = require('util')
+  , path = require('path')
+  , fs = require('fs')
+  , should = require('chai').should()
+  , request = require('supertest')
+  , http = require('http');
 
 var main = require('../app')
 	, iosocket = require('../routes/iosocket');
@@ -9,14 +17,14 @@ describe('Main - app.js', function serverjs(){
 		done();
 	});
 	it("Shouldn't be undefined", function(){
-		assert.ok(main);
+                main.should.be.an('object');
 	});
 });
 describe('Socket - iosocket.js', function iosocketjs(){
 	before(function(done){
 		done();
 	});
-	it("Shouldn't be undefined", function(){
+	it("Shouldn't be undefined", function(done){
 		var express = require('express')
 			, iosocket = require('../routes/iosocket')
 			, http = require('http');
@@ -24,11 +32,12 @@ describe('Socket - iosocket.js', function iosocketjs(){
 		var server = http.createServer(app)
 			,io = require('socket.io').listen(server);
 		
-		assert.ok(io);
-		assert.ok(server);
-		assert.ok(server.listen);
-		assert.ok(iosocket);
+                io.should.be.an('object');
+                server.should.be.an('object');
+                server.listen.should.be.a('function');
+                iosocket.should.be.a('function');
 		//assert.ok(iosocket(io));
+                return done();
 	});
 	after(function(done){
 		done();

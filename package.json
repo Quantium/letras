@@ -19,5 +19,9 @@
     "grunt-concurrent": "*",
     "grunt-simple-mocha": "*",
     "grunt-contrib-watch": "*"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "supertest": "^0.13.0"
   }
 }
