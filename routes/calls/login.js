@@ -14,7 +14,6 @@ module.exports = function login(io,socket){
         user.save(function save_person(err,user){
           if(err)return console.warn(err);
 
-          socket.usercount++;
           console.log('Saved :: ',user,socket.usercount);
           socket.emit('login',{r:'ok',token:'token',username:user.nickname,usercount:socket.usercount});
           socket.broadcast.emit('enter',{username: user.nickname,usercount:socket.usercount});
