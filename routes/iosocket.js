@@ -8,7 +8,7 @@ module.exports = function iosocket(i){
 
 	i.sockets.on('connection', function (socket){
 
-		console.log('A socket from ' + socket.handshake.address.address + ' connected!');
+		console.log('A socket from ' + socket.request.connection.remoteAddress + ' connected!');
         socket.usercount = usercount;
         login(i,socket);
         msg(i,socket);

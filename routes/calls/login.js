@@ -10,6 +10,7 @@ module.exports = function login(io,socket){
         socket.username = data.username;
         user.nickname = data.username;
         user.email = data.email;
+        user.ip = socket.request.connection.remoteAddress;
         console.log('User :: ',user);
         user.save(function save_person(err,user){
           if(err)return console.warn(err);

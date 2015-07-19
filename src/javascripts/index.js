@@ -2,7 +2,7 @@
  * SOCKET INITIALIZATION
 **/
 var chatlinelimit = 5;
-var socket = io.connect('');
+var socket = io();
 var username = '';
 socket.on('login', function (data) {
 	console.log('login');
