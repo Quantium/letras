@@ -1,5 +1,15 @@
 <section id="login">
-    <input name="user" type="text" value="user" id="user">
-    <input name="email" type="text" value="email@" id="email">
-    <input name="loginbtn" type="submit" value="Log In" id="loginbtn">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+        <label for="username" class="sr-only">username</label>
+        <input id="username" class="form-control" placeholder="Username" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button name="loginbtn" id="loginbtn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
 </section>

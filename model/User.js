@@ -1,6 +1,5 @@
-var mongoose = require('../MongoDB').mongoose
-    ,db = require('../MongoDB').db
-    ;
+var mongoose = require('mongoose'),
+    db = require('../MongoDB');
 
 var userSchema = new mongoose.Schema({
   userid: String,

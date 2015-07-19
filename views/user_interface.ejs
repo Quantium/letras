@@ -1,6 +1,11 @@
 <section id="user_interface">
-	<div id="welcome">Welcome <span class="username" id="username"></span></div>
-	<div id="chat_response"><input name="message" id="message" type="text" /> <span class="send"><a href="#">Send</a></span></div>
-	<div id="chat"></div>
+	<div id="welcome">Welcome <span class="username" id="username"></span> <span id="usercount">0</span></div>
 	<div id="game"></div>
+	<div id="chat"></div>
+	<div id="chat_response">
+		<form>
+			<input name="message" id="message" class="form-control" type="text" />
+			<button name="sendbtn" id="sendbtn" class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
+		</form>
+	</div>
 </section>
