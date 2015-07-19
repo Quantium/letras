@@ -4,4 +4,4 @@ module.exports = function dragend(io,socket){
 			//i.sockets.emit('dragend',data);
 			socket.broadcast.emit('dragend',data);
 		});
-}
+};

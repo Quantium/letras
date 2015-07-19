@@ -4,4 +4,4 @@ module.exports = function dragstart(io,socket){
 			//i.sockets.emit('dragstart',data);
 			socket.broadcast.emit('dragstart',data);
 		});
-}
+};

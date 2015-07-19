@@ -20,4 +20,4 @@ module.exports = function login(io,socket){
           socket.broadcast.emit('enter',{username: user.nickname,usercount:socket.usercount});
         });
     });
-}
+};
