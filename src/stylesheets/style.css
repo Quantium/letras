@@ -11,7 +11,7 @@ a {
 	width: 200px;
 	clear: both;
 	float: left;
-	height: 200px;
+	height: 110px;
 	overflow-y: auto;
 }
 #chat .chat_message .username {

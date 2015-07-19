@@ -1,7 +1,7 @@
 /**
  * SOCKET INITIALIZATION
 **/
-var chatlinelimit = 10;
+var chatlinelimit = 5;
 var socket = io.connect('');
 var username = '';
 socket.on('login', function (data) {
@@ -21,6 +21,11 @@ socket.on('msg', function (data) {
 						'<span class="username" id="'+data.user+'">'+data.user+'</span>'+
 						data.msg+
 						'</div>');
+
+	var chatl = $('#chat .chat_message').length;
+	if(chatl >= chatlinelimit) {
+		$('#chat .chat_message:lt(1)').remove();
+	}
 });
 socket.on('enter', function (data) {
 	console.log("Socket.On::enter");
