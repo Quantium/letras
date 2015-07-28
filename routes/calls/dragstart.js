@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function dragstart(io,socket){
 		socket.on('dragstart',function (data) {
 			console.log(data);

@@ -1,3 +1,4 @@
+'use strict';
 var msg = require('./calls/msg'),
     login = require('./calls/login'),
     dragstart = require('./calls/dragstart'),

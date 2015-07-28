@@ -1,3 +1,4 @@
+'use strict';
 var crypto = require('crypto'),
     User =  require('../../model/User')
     ;

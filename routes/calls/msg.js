@@ -1,4 +1,4 @@
-
+'use strict';
 module.exports = function msg(io,socket){
     socket.on('msg',function (data) {
         console.log(data);
