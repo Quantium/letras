@@ -5,8 +5,6 @@ var stage = new Konva.Stage({
   height: 600
 });
 
-
-
 var layer = new Konva.Layer();
 var rectX = stage.getWidth() / 2 - 50;
 var rectY = stage.getHeight() / 2 - 25;
@@ -21,30 +19,6 @@ var simpleText = new Konva.Text({
   fontFamily: 'Calibri',
   fill: 'black'
 });
-
-function buildStage(images) {
-    console.log("buildStage");
-
-    letters = [];
-    var count = 0;
-    for(var key in images){
-        var letter = new Konva.Image({
-            image: images[key],
-            x: count,
-            y: count,
-            draggable: true,
-            id: key
-        });
-        letter.cache();
-        letter.drawHitFromCache();
-        letter.on('dragstart', letterDragStart);
-        letter.on('dragend', letterDragEnd);
-        layer.add(letter);
-        letters.push(letter);
-        count += 10;
-    }
-    stage.add(layer);
-}
 
 layer.add(simpleText);
 
@@ -122,6 +96,29 @@ function loadImages(sources, callback) {
     }
 }
 
+function buildStage(images) {
+    console.log("buildStage");
+
+    letters = [];
+    var count = 0;
+    for(var key in images){
+        var letter = new Konva.Image({
+            image: images[key],
+            x: count,
+            y: count,
+            draggable: true,
+            id: key
+        });
+        letter.cache();
+        letter.drawHitFromCache();
+        letter.on('dragstart', letterDragStart);
+        letter.on('dragend', letterDragEnd);
+        layer.add(letter);
+        letters.push(letter);
+        count += 10;
+    }
+    stage.add(layer);
+}
 
 function getLetter($id){
   for(i = 0; i < letters.length; i++){
