@@ -58,6 +58,13 @@ module.exports = function(grunt) {
         }
       }
     },
+    copy: {
+      main: {
+        files: [
+            {expand: true, cwd: 'src/', src: ['assets/**','assets/**/**.**'], dest: 'public/'}
+        ],
+      },
+    },
     watch: {
       dev: {
         files: ['<%= jshint.files %>','src/stylesheets/**.css'],
@@ -81,6 +88,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
 
   grunt.registerTask('default', 'Grunt commands for this project', function(){
@@ -90,10 +98,10 @@ module.exports = function(grunt) {
     grunt.log.writeln('Call test to run the mocha tests');
     grunt.log.ok('End of instructions');
   });
-  grunt.registerTask('dev', ['jshint', 'uglify', 'cssmin']);
+  grunt.registerTask('dev', ['jshint', 'uglify', 'cssmin','copy']);
   grunt.registerTask('test', ['simplemocha']);
 
-  grunt.registerTask('publish', ['jshint','uglify','cssmin','simplemocha']);
+  grunt.registerTask('publish', ['jshint','uglify','cssmin','simplemocha','copy']);
 
   grunt.event.on('watch', function(action, filepath, target) {
     grunt.log.writeln(target + ': ' + filepath + ' has ' + action);

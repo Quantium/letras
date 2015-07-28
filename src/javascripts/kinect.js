@@ -2,12 +2,15 @@
 var stage = new Konva.Stage({
   container: 'game',
   width: 578,
-  height: 200
+  height: 600
 });
+
+
 
 var layer = new Konva.Layer();
 var rectX = stage.getWidth() / 2 - 50;
 var rectY = stage.getHeight() / 2 - 25;
+var letters;
 
 var simpleText = new Konva.Text({
   name: 'A',
@@ -19,60 +22,64 @@ var simpleText = new Konva.Text({
   fill: 'black'
 });
 
-var l_A = new Konva.Text({
-  x: stage.getWidth() / 2,
-  y: 15,
-  text: 'A',
-  fontSize: 30,
-  fontFamily: 'Calibri',
-  fill: 'green',
-  shadowColor: 'black',
-  shadowBlur: 2,
-  shadowOffset: 10,
-  shadowOpacity: 0,
-  draggable: true,
-  id: "A"/*,
-  dragBoundFunc: function(pos) {
-    return {
-      x: pos.x,
-      y: this.getAbsolutePosition().y
-    };
-  }*/
-});
+function buildStage(images) {
+    console.log("buildStage");
 
-var l_B = new Konva.Text({
-  x: stage.getWidth() / 2,
-  y: 25,
-  text: 'B',
-  fontSize: 30,
-  fontFamily: 'Calibri',
-  fill: 'green',
-  shadowColor: 'black',
-  shadowBlur: 2,
-  shadowOffset: 10,
-  shadowOpacity: 0,
-  draggable: true,
-  id: "B"/*,
-  dragBoundFunc: function(pos) {
-    return {
-      x: pos.x,
-      y: this.getAbsolutePosition().y
-    };
-  }*/
-});
+    letters = [];
+    var count = 0;
+    for(var key in images){
+        var letter = new Konva.Image({
+            image: images[key],
+            x: count,
+            y: count,
+            draggable: true,
+            id: key
+        });
+        letter.cache();
+        letter.drawHitFromCache();
+        letter.on('dragstart', letterDragStart);
+        letter.on('dragend', letterDragEnd);
+        layer.add(letter);
+        letters.push(letter);
+        count += 10;
+    }
+    stage.add(layer);
+}
 
-var letters = [l_A,l_B];
-
-l_A.on('dragstart', letterDragStart);
-l_B.on('dragstart', letterDragStart);
-l_A.on('dragend', letterDragEnd);
-l_B.on('dragend', letterDragEnd);
-layer.add(l_A);
-layer.add(l_B);
 layer.add(simpleText);
 
 stage.add(layer);
 
+var sources = {
+      A: 'assets/letters/A.png',
+      B: 'assets/letters/B.png',
+      C: 'assets/letters/C.png',
+      D: 'assets/letters/D.png',
+      E: 'assets/letters/E.png',
+      F: 'assets/letters/F.png',
+      G: 'assets/letters/G.png',
+      H: 'assets/letters/H.png',
+      I: 'assets/letters/I.png',
+      J: 'assets/letters/J.png',
+      K: 'assets/letters/K.png',
+      L: 'assets/letters/L.png',
+      M: 'assets/letters/M.png',
+      N: 'assets/letters/N.png',
+      O: 'assets/letters/O.png',
+      P: 'assets/letters/P.png',
+      Q: 'assets/letters/Q.png',
+      R: 'assets/letters/R.png',
+      S: 'assets/letters/S.png',
+      T: 'assets/letters/T.png',
+      U: 'assets/letters/U.png',
+      V: 'assets/letters/V.png',
+      W: 'assets/letters/W.png',
+      X: 'assets/letters/X.png',
+      Y: 'assets/letters/Y.png',
+      Z: 'assets/letters/Z.png'
+    };
+
+loadImages(sources,buildStage);
 
 socket.on('dragstart', function (data) {
   writeMessage("Hay que DESAPARECER " + data.letter);
@@ -94,6 +101,27 @@ socket.on('dragend', function (data) {
   //l.on('dragend', letterDragEnd);
   layer.draw();
 });
+
+function loadImages(sources, callback) {
+    console.log('loadedImages');
+    var images = {};
+    var loadedImages = 0;
+    var numImages = 0;
+    for(var sr in sources) {
+        numImages++;
+    }
+    var onLoadImage = function onLoad() {
+        if(++loadedImages >= numImages) {
+            callback(images);
+        }
+    };
+    for(var src in sources) {
+        images[src] = new Image();
+        images[src].onload = onLoadImage;
+        images[src].src = sources[src];
+    }
+}
+
 
 function getLetter($id){
   for(i = 0; i < letters.length; i++){
