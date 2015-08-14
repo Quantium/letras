@@ -36,3 +36,4 @@ node_modules
 .lock-wscript
 MongoDB.js
 **.**.swp
+.env
