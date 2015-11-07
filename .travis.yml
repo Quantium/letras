@@ -5,7 +5,7 @@ services:
 - mongodb
 before_install: npm install -g grunt-cli
 install: npm install
-before_script: grunt build
+before_script: grunt publish
 deploy:
   provider: heroku 
   api_key: $HEROKU_APP_ID
