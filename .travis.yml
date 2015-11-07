@@ -7,9 +7,8 @@ services:
 before_install: npm install -g mocha
 install: npm install
 deploy:
-  provider: heroku 
-  api_key: $HEROKU_KEY
-  app: letrasgame
-  revision_type: github
-  on:
-    repo: Quantium/letras
+  provider: opsworks
+  access-key-id: $AWS_ACCESS_KEY_ID
+  secret-access-key: $AWS_SECRET_ACCESS_KEY
+  app-id: $AWS_APP_ID
+  wait-until-deployed: true 
