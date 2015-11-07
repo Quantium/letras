@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node app.js",
     "stop": "./node_modules/.bin/forever stop app.js",
-    "test": "mocha test"
+    "test": "mocha tests"
   },
   "directories": {
     "test": "test"
