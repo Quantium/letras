@@ -34,6 +34,5 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
-MongoDB.js
 **.**.swp
 .env
