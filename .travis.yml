@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+- '0.12'
+services:
+- mongodb
+deploy:
+  provider: heroku 
+  api_key: $HEROKU_APP_ID
+  app: isotoponet
+  revision_type: github
+  deployment_group: 4yopping
+  on:
+    repo: Quantium/isotopo2015
+ deploy:
+  provider: opsworks
+  access-key-id: $AWS-ACCESS-KEY-ID
+  secret-access-key: $AWS-SECRET-ACCESS-KEY
+  app-id: $AWS-APP-ID
+  wait-until-deployed: true 
