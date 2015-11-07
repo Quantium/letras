@@ -11,9 +11,3 @@ deploy:
   deployment_group: Quantium
   on:
     repo: Quantium/letras
- deploy:
-  provider: opsworks
-  access-key-id: $AWS-ACCESS-KEY-ID
-  secret-access-key: $AWS-SECRET-ACCESS-KEY
-  app-id: $AWS-APP-ID
-  wait-until-deployed: true 
