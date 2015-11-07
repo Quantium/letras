@@ -8,9 +8,9 @@ deploy:
   api_key: $HEROKU_APP_ID
   app: isotoponet
   revision_type: github
-  deployment_group: 4yopping
+  deployment_group: Quantium
   on:
-    repo: Quantium/isotopo2015
+    repo: Quantium/letras
  deploy:
   provider: opsworks
   access-key-id: $AWS-ACCESS-KEY-ID
