@@ -6,7 +6,7 @@ services:
 deploy:
   provider: heroku 
   api_key: $HEROKU_APP_ID
-  app: isotoponet
+  app: letrasgame
   revision_type: github
   deployment_group: Quantium
   on:
