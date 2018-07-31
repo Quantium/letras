@@ -18,7 +18,7 @@
     "crypto": "0.0.3",
     "ejs": "*",
     "express": "3.2.6",
-    "forever": "~0.10.8",
+    "forever": "~0.13.0",
     "jaws-stack": "0.0.1",
     "mongoose": "^4.0.7",
     "restify": "~2.6.0",
