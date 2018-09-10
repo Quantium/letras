@@ -17,7 +17,7 @@
     "bunyan": "~0.21.4",
     "crypto": "0.0.3",
     "ejs": "*",
-    "express": "3.2.6",
+    "express": "3.11.0",
     "forever": "~0.13.0",
     "jaws-stack": "0.0.1",
     "mongoose": "^4.0.7",
